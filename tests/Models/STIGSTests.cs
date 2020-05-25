@@ -9,18 +9,19 @@ namespace tests.Models
         [Fact]
         public void Test_NewSTIGSIsValid()
         {
-            STIGS data = new STIGS();
-            Assert.True(data != null);
+            STIGS stigs = new STIGS();
+
+            // Testing
+            Assert.False(stigs == null);
         }
     
         [Fact]
         public void Test_STIGSWithDataIsValid()
         {
-            STIGS data = new STIGS();
+            STIGS stigs = new STIGS();
 
-            // test things out
-            Assert.True(data != null);
-            Assert.True(data.iSTIG != null);
+            // Testing
+            Assert.False(stigs.iSTIG == null);
         }
     }
 }

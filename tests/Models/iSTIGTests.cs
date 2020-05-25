@@ -1,6 +1,7 @@
 using Xunit;
 using openrmf_msg_checklist.Models;
 using System;
+using System.Collections.Generic;
 
 namespace tests.Models
 {
@@ -9,19 +10,29 @@ namespace tests.Models
         [Fact]
         public void Test_NewiSTIGIsValid()
         {
-            iSTIG iStig = new iSTIG();
-            Assert.True(iStig != null);
+            iSTIG istig = new iSTIG();
+
+            // Testing
+            Assert.False(istig == null);
         }
     
         [Fact]
         public void Test_iSTIGWithDataIsValid()
         {
-            iSTIG iStig = new iSTIG();
-            // test things out
-            Assert.True(iStig != null);
-            Assert.True(iStig.STIG_INFO != null);
-            Assert.True(iStig.VULN != null);
-            Assert.True(iStig.VULN.Count == 0);
+            iSTIG istig = new iSTIG();
+
+            istig.STIG_INFO = new STIG_INFO();
+            
+            List<VULN> vulns = new List<VULN>();
+            vulns.Add(new VULN());
+            vulns.Add(new VULN());
+            istig.VULN = vulns;
+
+            // Testing
+            Assert.False(istig.STIG_INFO == null);
+            Assert.False(istig.VULN == null);
+            Assert.False(istig.VULN[0] == null);
+            Assert.False(istig.VULN[1] == null);
         }
     }
 }

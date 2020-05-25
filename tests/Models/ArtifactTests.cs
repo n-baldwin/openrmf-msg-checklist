@@ -1,6 +1,7 @@
 using Xunit;
 using openrmf_msg_checklist.Models;
 using System;
+using MongoDB.Bson;
 
 namespace tests.Models
 {
@@ -9,34 +10,46 @@ namespace tests.Models
         [Fact]
         public void Test_NewArtifactIsValid()
         {
-            Artifact art = new Artifact();
-            Assert.True(art != null);
+            Artifact artifact = new Artifact();
+
+            // Testing
+            Assert.False(artifact == null);
         }
     
         [Fact]
         public void Test_ArtifactWithDataIsValid()
         {
-            Artifact art = new Artifact();
-            art.created = DateTime.Now;
-            art.systemGroupId = "bab8675a867b578d658fd5b876";
-            art.hostName = "myHost";
-            art.stigType = "Google Chrome";
-            art.stigRelease = "Version 1";
-            art.version = "1";
-            art.updatedOn = DateTime.Now;
+            Artifact artifact = new Artifact();
 
-            // test things out
-            Assert.True(art != null);
-            Assert.True (!string.IsNullOrEmpty(art.created.ToShortDateString()));
-            Assert.True (!string.IsNullOrEmpty(art.systemGroupId));
-            Assert.True (!string.IsNullOrEmpty(art.hostName));
-            Assert.True (!string.IsNullOrEmpty(art.stigType));
-            Assert.True (!string.IsNullOrEmpty(art.stigRelease));
-            Assert.True (!string.IsNullOrEmpty(art.version));
-            Assert.True (!string.IsNullOrEmpty(art.title));  // readonly from other fields
-            Assert.True (art.updatedOn.HasValue);
-            Assert.True (!string.IsNullOrEmpty(art.updatedOn.Value.ToShortDateString()));
-            Assert.True (art.CHECKLIST != null);
+            artifact.created = DateTime.Now;
+            artifact.updatedOn = DateTime.Now;
+            artifact.createdBy = Guid.NewGuid();
+            artifact.updatedBy = Guid.NewGuid();
+            artifact.systemGroupId = "Group ID";
+            artifact.systemTitle = "Title";
+            artifact.hostName = "myHost";
+            artifact.stigType = "Google Chrome";
+            artifact.stigRelease = "Version 1";
+            artifact.version = "Version 1";
+            artifact.InternalId = ObjectId.GenerateNewId();
+            artifact.rawChecklist = "Raw";
+            artifact.CHECKLIST = new CHECKLIST();
+
+            // Testing
+            Assert.True(artifact.systemGroupId == "Group ID");
+            Assert.True(artifact.systemTitle == "Title");
+            Assert.True(artifact.hostName == "myHost");
+            Assert.True(artifact.stigType == "Google Chrome");
+            Assert.True(artifact.stigRelease == "Version 1");
+            Assert.True(artifact.title == "myHost-Google Chrome-VVersion 1-Version 1");
+            Assert.True(artifact.version == "Version 1");
+            Assert.True(artifact.rawChecklist == "Raw");
+            Assert.False(artifact.created == null);
+            Assert.False(artifact.updatedOn == null);
+            Assert.False(artifact.createdBy == null);
+            Assert.False(artifact.updatedBy == null);
+            Assert.False(artifact.InternalId == null);
+            Assert.False(artifact.CHECKLIST == null);
         }
     }
 }

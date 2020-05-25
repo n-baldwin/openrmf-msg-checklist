@@ -9,18 +9,23 @@ namespace tests.Models
         [Fact]
         public void Test_NewCHECKLISTIsValid()
         {
-            CHECKLIST chk = new CHECKLIST();
-            Assert.True(chk != null);
+            CHECKLIST checklist = new CHECKLIST();
+
+            // Testing
+            Assert.False(checklist == null);
         }
     
         [Fact]
         public void Test_CHECKLISTWithDataIsValid()
         {
-            CHECKLIST chk = new CHECKLIST();
-            // test things out
-            Assert.True(chk != null);
-            Assert.True(chk.ASSET != null);
-            Assert.True(chk.STIGS != null);
+            CHECKLIST checklist = new CHECKLIST();
+
+            checklist.ASSET = new ASSET();
+            checklist.STIGS = new STIGS();
+
+            // Testing
+            Assert.False(checklist.ASSET == null);
+            Assert.False(checklist.STIGS == null);
         }
     }
 }

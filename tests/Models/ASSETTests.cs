@@ -10,7 +10,9 @@ namespace tests.Models
         public void Test_NewASSETIsValid()
         {
             ASSET asset = new ASSET();
-            Assert.True(asset != null);
+
+            // Testing
+            Assert.False(asset == null);
         }
     
         [Fact]
@@ -29,19 +31,18 @@ namespace tests.Models
     		asset.WEB_DB_SITE  = "myRole";
     		asset.WEB_DB_INSTANCE  = "myRole";
             
-            // test things out
-            Assert.True(asset != null);
-            Assert.True(!string.IsNullOrEmpty(asset.ROLE));
-            Assert.True(!string.IsNullOrEmpty(asset.ASSET_TYPE));
-            Assert.True(!string.IsNullOrEmpty(asset.HOST_NAME));
-            Assert.True(!string.IsNullOrEmpty(asset.HOST_IP));
-            Assert.True(!string.IsNullOrEmpty(asset.HOST_MAC));
-            Assert.True(!string.IsNullOrEmpty(asset.HOST_FQDN));
-            Assert.True(!string.IsNullOrEmpty(asset.TECH_AREA));
-            Assert.True(!string.IsNullOrEmpty(asset.TARGET_KEY));
-            Assert.True(!string.IsNullOrEmpty(asset.WEB_OR_DATABASE));
-            Assert.True(!string.IsNullOrEmpty(asset.WEB_DB_SITE));
-            Assert.True(!string.IsNullOrEmpty(asset.WEB_DB_INSTANCE));
+            // Testing
+            Assert.True(asset.ROLE == "myRole");
+            Assert.True(asset.ASSET_TYPE == "myRole");
+            Assert.True(asset.HOST_NAME == "myRole");
+            Assert.True(asset.HOST_IP == "myRole");
+            Assert.True(asset.HOST_MAC == "myRole");
+            Assert.True(asset.HOST_FQDN == "myRole");
+            Assert.True(asset.TECH_AREA == "myRole");
+            Assert.True(asset.TARGET_KEY == "myRole");
+            Assert.True(asset.WEB_OR_DATABASE == "myRole");
+            Assert.True(asset.WEB_DB_SITE == "myRole");
+            Assert.True(asset.WEB_DB_INSTANCE == "myRole");
         }
     }
 }

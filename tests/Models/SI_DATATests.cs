@@ -9,21 +9,23 @@ namespace tests.Models
         [Fact]
         public void Test_NewSI_DATAIsValid()
         {
-            SI_DATA data = new SI_DATA();
-            Assert.True(data != null);
+            SI_DATA si_data = new SI_DATA();
+
+            // Testing
+            Assert.False(si_data == null);
         }
     
         [Fact]
         public void Test_SI_DATAWithDataIsValid()
         {
-            SI_DATA data = new SI_DATA();
-            data.SID_DATA = "mydata";
-            data.SID_NAME = "myName";
+            SI_DATA si_data = new SI_DATA();
 
-            // test things out
-            Assert.True(data != null);
-            Assert.True(!string.IsNullOrEmpty(data.SID_DATA));
-            Assert.True(!string.IsNullOrEmpty(data.SID_NAME));
+            si_data.SID_DATA = "mydata";
+            si_data.SID_NAME = "myName";
+
+            // Testing
+            Assert.True(si_data.SID_DATA == "mydata");
+            Assert.True(si_data.SID_NAME == "myName");
         }
     }
 }

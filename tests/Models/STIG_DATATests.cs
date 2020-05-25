@@ -9,21 +9,23 @@ namespace tests.Models
         [Fact]
         public void Test_NewSTIG_DATAIsValid()
         {
-            STIG_DATA data = new STIG_DATA();
-            Assert.True(data != null);
+            STIG_DATA stig_data = new STIG_DATA();
+
+            // Testing
+            Assert.False(stig_data == null);
         }
     
         [Fact]
         public void Test_STIG_DATAWithDataIsValid()
         {
-            STIG_DATA data = new STIG_DATA();
-            data.VULN_ATTRIBUTE = "my attribute";
-            data.ATTRIBUTE_DATA = "my data";
+            STIG_DATA stig_data = new STIG_DATA();
 
-            // test things out
-            Assert.True(data != null);
-            Assert.True(!string.IsNullOrEmpty(data.VULN_ATTRIBUTE));
-            Assert.True(!string.IsNullOrEmpty(data.ATTRIBUTE_DATA));
+            stig_data.VULN_ATTRIBUTE = "my attribute";
+            stig_data.ATTRIBUTE_DATA = "my data";
+
+            // Testing
+            Assert.True(stig_data.VULN_ATTRIBUTE == "my attribute");
+            Assert.True(stig_data.ATTRIBUTE_DATA == "my data");
         }
     }
 }

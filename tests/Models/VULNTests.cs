@@ -9,29 +9,33 @@ namespace tests.Models
         [Fact]
         public void Test_NewVULNIsValid()
         {
-            VULN v = new VULN();
-            Assert.True(v != null);
+            VULN vuln = new VULN();
+
+            // Testing
+            Assert.False(vuln == null);
         }
     
         [Fact]
         public void Test_VULNWithDataIsValid()
         {
-            VULN v = new VULN();
-            v.STATUS = "my status";
-            v.FINDING_DETAILS = "my status";
-            v.COMMENTS = "my status";
-            v.SEVERITY_OVERRIDE = "my status";
-            v.SEVERITY_JUSTIFICATION = "my status";
+            VULN vuln = new VULN();
+            
+            vuln.STIG_DATA.Add(new STIG_DATA());
+            vuln.STIG_DATA.Add(new STIG_DATA());
 
-            // test things out
-            Assert.True(v != null);
-            Assert.True(v.STIG_DATA != null);
-            Assert.True(v.STIG_DATA.Count == 0);
-            Assert.True(!string.IsNullOrEmpty(v.STATUS));
-            Assert.True(!string.IsNullOrEmpty(v.FINDING_DETAILS));
-            Assert.True(!string.IsNullOrEmpty(v.COMMENTS));
-            Assert.True(!string.IsNullOrEmpty(v.SEVERITY_OVERRIDE));
-            Assert.True(!string.IsNullOrEmpty(v.SEVERITY_JUSTIFICATION));
+            vuln.STATUS = "Alive";
+            vuln.FINDING_DETAILS = "Living looking";
+            vuln.COMMENTS = "Witty comment";
+            vuln.SEVERITY_OVERRIDE = "No idea";
+            vuln.SEVERITY_JUSTIFICATION = "Justified?";
+
+            // Testing
+            Assert.True(vuln.STIG_DATA.Count == 2);
+            Assert.True(vuln.STATUS == "Alive");
+            Assert.True(vuln.FINDING_DETAILS == "Living looking");
+            Assert.True(vuln.COMMENTS == "Witty comment");
+            Assert.True(vuln.SEVERITY_OVERRIDE == "No idea");
+            Assert.True(vuln.SEVERITY_JUSTIFICATION == "Justified?");
         }
     }
 }
